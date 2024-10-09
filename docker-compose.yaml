@@ -1,0 +1,30 @@
+version: '3'
+services:
+  # Backend (Node.js) service
+  backend:
+    build:
+      context: ./backend  # Path to your Node.js app's Dockerfile
+    container_name: node-backend
+    ports:
+      - "5000:5000"  # Expose port 5000 for the backend
+    networks:
+      - my-network
+    volumes:
+      - ./backend:/usr/src/app  # Optional: Mount local code for live development
+
+  # Frontend (React/Vite) service
+  frontend:
+    build:
+      context: ./src  # Path to your React app's Dockerfile
+    container_name: react-frontend
+    ports:
+      - "3000:80"  # Serve the React app from port 80 (inside the container) to port 3000 on localhost
+    networks:
+      - my-network
+    depends_on:
+      - backend  # Ensure frontend starts after the backend is ready
+
+# Define the custom network
+networks:
+  my-network:
+    driver: bridge
