@@ -39,7 +39,7 @@ app.post('/task', async (req, res) => {
 });
 
 // Serve the React app
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.send("helllo");
 });
 
