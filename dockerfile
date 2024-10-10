@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm install -g npm@latest
 
 # 5. Install dependencies with legacy peer dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # 6. Copy the rest of the application files
 COPY . .
