@@ -1,4 +1,5 @@
-version: '3'
+version: '3.8'  # Use version 3.8 for the latest features
+
 services:
   # Backend (Node.js) service
   backend:
@@ -10,12 +11,14 @@ services:
     networks:
       - my-network
     volumes:
-      - ./backend:/usr/src/app  # Optional: Mount local code for live development
+      - ./:/usr/src/app  # Optional: Mount local code for live development
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/todoapp  # MongoDB connection string
 
   # Frontend (React/Vite) service
   frontend:
     build:
-      context: ./src  # Path to your React app's Dockerfile
+      context: ./  # Path to your React app's Dockerfile
     container_name: react-frontend
     ports:
       - "3000:80"  # Serve the React app from port 80 (inside the container) to port 3000 on localhost
@@ -23,6 +26,17 @@ services:
       - my-network
     depends_on:
       - backend  # Ensure frontend starts after the backend is ready
+
+  # MongoDB service
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"  # Expose MongoDB port
+    networks:
+      - my-network
+    volumes:
+      - ./data/db:/data/db  # Persist MongoDB data on the host
 
 # Define the custom network
 networks:

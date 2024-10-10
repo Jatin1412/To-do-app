@@ -4,9 +4,10 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-app.use(express.static(path.join(__dirname, '../dist')))
+console.log(__dirname);
 app.use(express.json()); // Middleware to parse JSON bodies
-app.use(cors()); // To handle CORS issues if React and Express run on different ports
+app.use(cors({ origin: 'http://localhost:3000' })); // Allow requests from the frontend URL
+
 
 // MongoDB Task model
 const TaskSchema = new mongoose.Schema({
@@ -37,15 +38,16 @@ app.post('/task', async (req, res) => {
   }
 });
 
+// Serve the React app
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-  });
+  res.send("helllo");
+});
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT} ${__dirname}`));
 
 // MongoDB connection
 mongoose
-  .connect('mongodb://localhost:27017/todo-app', { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect('mongodb://mongo:27017/todoapp') // Use 'mongo' service name from docker-compose
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('MongoDB connection error:', error));

@@ -1,0 +1,3 @@
+which mongo
+mongo
+exit
