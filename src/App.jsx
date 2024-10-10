@@ -45,10 +45,10 @@ const App = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input type="text" value={title}
-          onChange={(e) => setTitle(e.target.value)} name="title" id="title" placeholder="Enter Title" />
+          onChange={(e) => setTitle(e.target.value)} id="title" placeholder="Enter Title" />
         <label htmlFor="task">Task</label>
         <input type="text" value={description}
-          onChange={(e) => setDescription(e.target.value)} name="task" id="task" placeholder="Enter Task" />
+          onChange={(e) => setDescription(e.target.value)} id="task" placeholder="Enter Task" />
         <button type="submit" id="btn">Task Add</button>
       </form>
       <div className="to-do"></div>
