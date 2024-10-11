@@ -37,6 +37,7 @@ services:
       - my-network
     volumes:
       - ./data/db:/data/db  # Persist MongoDB data on the host
+    user: "999:999"  
 
 # Define the custom network
 networks:
