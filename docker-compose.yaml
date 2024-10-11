@@ -30,7 +30,7 @@ services:
   # MongoDB service
   mongo:
     image: mongo:latest
-    container_name: mongo-jenkis
+    container_name: mongo
     ports:
       - "27017:27017"  # Expose MongoDB port
     networks:
