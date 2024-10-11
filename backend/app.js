@@ -48,6 +48,6 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT} ${__dirname}`
 
 // MongoDB connection
 mongoose
-  .connect('mongodb://localhost:27017/todoapp') // Use 'mongo' service name from docker-compose
+  .connect('mongodb://mongo:27017/todoapp') // Use 'mongo' service name from docker-compose
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('MongoDB connection error:', error));
