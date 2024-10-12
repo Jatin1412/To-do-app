@@ -5,7 +5,7 @@ services:
   backend:
     build:
       context: ./backend  # Path to your Node.js app's Dockerfile
-    container_name: node-backend-jenkins
+    container_name: node-backend
     ports:
       - "5000:5000"  # Expose port 5000 for the backend
     networks:
@@ -19,7 +19,7 @@ services:
   frontend:
     build:
       context: ./  # Path to your React app's Dockerfile
-    container_name: react-frontend-jenkins
+    container_name: react-frontend
     ports:
       - "3000:80"  # Serve the React app from port 80 (inside the container) to port 3000 on localhost
     networks:
@@ -30,7 +30,7 @@ services:
   # MongoDB service
   mongo:
     image: mongo:latest
-    container_name: mongo2
+    container_name: mongo
     ports:
       - "27017:27017"  # Expose MongoDB port
     networks:

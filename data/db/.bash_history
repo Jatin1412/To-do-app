@@ -1,3 +1,0 @@
-which mongo
-mongo
-exit
